@@ -1,7 +1,7 @@
 /**
   * Copyright 2021 bejson.com 
   */
-package com.isep.group4.android_weather_forecast.data.current_weather;
+package com.isep.group4.android_weather_forecast.beans.current_weather;
 import java.util.List;
 
 /**
