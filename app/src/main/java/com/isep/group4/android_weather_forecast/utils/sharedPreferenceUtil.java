@@ -1,4 +1,4 @@
-package com.example.testcitysearch.utils;
+package com.isep.group4.android_weather_forecast.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
