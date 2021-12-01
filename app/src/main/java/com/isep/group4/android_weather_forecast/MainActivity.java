@@ -1,8 +1,13 @@
 package com.isep.group4.android_weather_forecast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.isep.group4.android_weather_forecast.utils.locationUtil;
 
 public class MainActivity extends AppCompatActivity {
 
