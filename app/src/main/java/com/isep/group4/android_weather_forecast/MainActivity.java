@@ -10,5 +10,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                result -> {
+                    if (result) {
+                        locationUtil.getlocation(this,this);
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
+                    }
+                }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
     }
 }

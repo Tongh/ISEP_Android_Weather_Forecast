@@ -14,7 +14,7 @@ import java.util.Date;
 public class Results {
 
     private List<Address_components> address_components;
-    private Date formatted_address;
+    private String formatted_address;
     private Geometry geometry;
     private boolean partial_match;
     private String place_id;
@@ -26,10 +26,10 @@ public class Results {
          return address_components;
      }
 
-    public void setFormatted_address(Date formatted_address) {
+    public void setFormatted_address(String formatted_address) {
          this.formatted_address = formatted_address;
      }
-     public Date getFormatted_address() {
+     public String getFormatted_address() {
          return formatted_address;
      }
 

@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.isep.group4.android_weather_forecast">
 
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许连接网络 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 访问GPS定位 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 访问设备状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
