@@ -38,6 +38,8 @@ Data visualization is also available in our application: line charts by default,
 #### List city name that user has searched before
 -A column list shows the city that the user has searched before. User can check the city by touching the city name rather than searching.
 
+<br>
+---
 # Data Source & Data Structure
 ## Current Weather
 API: https://api.openweathermap.org/data/2.5/weather?lat=48.8534&lon=2.3486&appid=4b1fe12967fbc1e9b76903af4985d45f <br>
