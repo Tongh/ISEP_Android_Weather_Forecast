@@ -43,7 +43,7 @@ Data visualization is also available in our application: line charts by default,
 ---
 # Data Source & Data Structure
 ## Current Weather
-API: https://api.openweathermap.org/data/2.5/weather?lat=48.8534&lon=2.3486&appid=4b1fe12967fbc1e9b76903af4985d45f <br>
+API: <br>https://api.openweathermap.org/data/2.5/weather?lat=48.8534&lon=2.3486&appid=4b1fe12967fbc1e9b76903af4985d45f <br>
 JsonResponse:
 ```json
 {
@@ -93,7 +93,7 @@ JsonResponse:
 ```
 
 ## Forecast
-API: https://api.openweathermap.org/data/2.5/onecall?lat=48.824272&lon=2.27326&appid=4b1fe12967fbc1e9b76903af4985d45f <br>
+API: <br>https://api.openweathermap.org/data/2.5/onecall?lat=48.824272&lon=2.27326&appid=4b1fe12967fbc1e9b76903af4985d45f <br>
 JsonResponse:
 ```json
 {
@@ -199,7 +199,7 @@ JsonResponse:
 ```
 
 ## City name to Lat long
-API: https://maps.googleapis.com/maps/api/geocode/json?address=issylesmoulineux&key=AIzaSyAYE39CrIN_0fcSmDERaroK_lXrE8VwWMk <br>
+API: <br>https://maps.googleapis.com/maps/api/geocode/json?address=issylesmoulineux&key=AIzaSyAYE39CrIN_0fcSmDERaroK_lXrE8VwWMk <br>
 JsonResponse:
 ```json
 {
