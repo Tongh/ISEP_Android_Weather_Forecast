@@ -39,6 +39,7 @@ Data visualization is also available in our application: line charts by default,
 -A column list shows the city that the user has searched before. User can check the city by touching the city name rather than searching.
 
 <br>
+
 ---
 # Data Source & Data Structure
 ## Current Weather
