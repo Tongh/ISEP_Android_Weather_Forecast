@@ -29,6 +29,10 @@ android {
 
 dependencies {
 
+    implementation 'com.github.abel533:ECharts:3.0.0.2'
+    implementation 'org.litepal:LitePal:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
