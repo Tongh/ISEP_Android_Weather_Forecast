@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.isep.group4.android_weather_forecast.R;
+import com.isep.group4.android_weather_forecast.utils.handleUtils;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link current_weather#newInstance} factory method to
+ * Use the {@link fragment_current_weather_top#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class current_weather extends Fragment {
+public class fragment_current_weather_top extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +27,7 @@ public class current_weather extends Fragment {
     private double lat;
     private double lon;
 
-    public current_weather() {
+    public fragment_current_weather_top() {
         // Required empty public constructor
     }
 
@@ -39,8 +40,8 @@ public class current_weather extends Fragment {
      * @return A new instance of fragment current_weather.
      */
     // TODO: Rename and change types and number of parameters
-    public static current_weather newInstance(double lat, double lon) {
-        current_weather fragment = new current_weather();
+    public static fragment_current_weather_top newInstance(double lat, double lon) {
+        fragment_current_weather_top fragment = new fragment_current_weather_top();
         Bundle args = new Bundle();
         args.putDouble(ARG_LAT, lat);
         args.putDouble(ARG_LON, lon);
@@ -55,12 +56,17 @@ public class current_weather extends Fragment {
             lat = getArguments().getDouble(ARG_LAT);
             lon = getArguments().getDouble(ARG_LON);
         }
+        else {
+
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_current_weather, container, false);
+        return inflater.inflate(R.layout.fragment_current_weather_top, container, false);
     }
+
+
 }
