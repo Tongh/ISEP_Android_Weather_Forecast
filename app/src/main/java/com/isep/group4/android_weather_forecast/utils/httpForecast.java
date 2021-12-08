@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.isep.group4.android_weather_forecast.beans.forecast.Forecast;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -30,17 +32,22 @@ public class httpForecast {
                 new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                        Log.d("Failed", "onFailure: 1111111");
+                        Log.d("Failed", e.toString());
                     }
 
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String responseData = response.body().string();
-//                        convertorForecast.fromJsonToPOJO(responseData);
+                        Forecast forecast = handleUtils.handleForecast(responseData);
 
-                        activity.runOnUiThread(()->{
 
-                        });
+                        try{
+                            activity.runOnUiThread(()->{
+
+                            });
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
 
                     }
                 });
