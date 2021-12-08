@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.testcitysearch.gson.CitySearch;
+import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,6 +34,33 @@ public class HttpUtil {
                         try {
                             activity.runOnUiThread(()->{
                                 if (citySearch!=null&&citySearch.getStatus().equals("OK")){
+
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    public static void requestCurrentWeather(double lat, double lon, AppCompatActivity activity) {
+        String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat
+                + "&lon=" + lon + "&appid=4b1fe12967fbc1e9b76903af4985d45f";
+        HttpUtil.sendOkhttpRequst(url,
+                new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        Log.d("Http_Failure", e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        String responseData = response.body().string();
+                        CurrentWeather currentWeather =  handleUtils.handleCurrentWeather(responseData);
+                        try {
+                            activity.runOnUiThread(()->{
+                                if (currentWeather!=null){
 
                                 }
                             });
