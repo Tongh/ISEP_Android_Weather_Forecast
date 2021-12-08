@@ -1,7 +1,7 @@
 /**
   * Copyright 2021 bejson.com 
   */
-package com.example.testcitysearch.gson;
+package com.isep.group4.android_weather_forecast.beans.city;
 
 /**
  * Auto-generated: 2021-12-01 11:14:4

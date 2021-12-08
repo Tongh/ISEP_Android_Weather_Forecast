@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.isep.group4.android_weather_forecast.beans.city.CitySearch;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
 import org.jetbrains.annotations.NotNull;
