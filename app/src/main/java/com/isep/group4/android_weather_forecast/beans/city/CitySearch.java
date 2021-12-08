@@ -2,6 +2,7 @@
   * Copyright 2021 bejson.com 
   */
 package com.isep.group4.android_weather_forecast.beans.city;
+
 import java.util.List;
 
 /**
