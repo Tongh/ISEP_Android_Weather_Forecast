@@ -1,8 +1,8 @@
 package com.isep.group4.android_weather_forecast.utils;
 
 import android.util.Log;
-import com.example.testcitysearch.gson.CitySearch;
 import com.google.gson.Gson;
+import com.isep.group4.android_weather_forecast.beans.city.CitySearch;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
 import org.json.JSONObject;
