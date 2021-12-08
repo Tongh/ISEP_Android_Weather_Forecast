@@ -2,13 +2,17 @@ package com.isep.group4.android_weather_forecast.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.isep.group4.android_weather_forecast.MainActivity;
 import com.isep.group4.android_weather_forecast.R;
+import com.isep.group4.android_weather_forecast.utils.HttpUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +31,6 @@ public class fragment_current_weather_bottom extends Fragment {
     private String mParam2;
 
     public fragment_current_weather_bottom() {
-        // Required empty public constructor
     }
 
     /**
@@ -61,6 +64,21 @@ public class fragment_current_weather_bottom extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_current_weather_bottom, container, false);
+    }
+
+    public void updateCurrentWeather() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+            }
+        }).start();
     }
 }

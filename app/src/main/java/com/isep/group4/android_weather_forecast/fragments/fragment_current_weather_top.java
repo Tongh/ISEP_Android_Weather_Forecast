@@ -2,13 +2,16 @@ package com.isep.group4.android_weather_forecast.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.isep.group4.android_weather_forecast.R;
+import com.isep.group4.android_weather_forecast.utils.HttpUtil;
 import com.isep.group4.android_weather_forecast.utils.handleUtils;
 
 /**
@@ -27,8 +30,10 @@ public class fragment_current_weather_top extends Fragment {
     private double lat;
     private double lon;
 
+    private TextView tv_weather, tv_temperature;
+
     public fragment_current_weather_top() {
-        // Required empty public constructor
+        HttpUtil.requestCurrentWeather(48.8534, 2.3486, (AppCompatActivity) getActivity());
     }
 
     /**
@@ -64,8 +69,26 @@ public class fragment_current_weather_top extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_current_weather_top, container, false);
+        View view = inflater.inflate(R.layout.fragment_current_weather_top, container, false);
+
+        tv_weather = view.findViewById(R.id.tv_weather);
+        tv_temperature = view.findViewById(R.id.tv_temperature);
+
+        return view;
+    }
+
+    public void updateCurrentWeather() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+            }
+        }).start();
     }
 
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
@@ -27,5 +28,10 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
                     }
                 }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
+
+    }
+
+    public void updateCurrentWeather() {
+
     }
 }
