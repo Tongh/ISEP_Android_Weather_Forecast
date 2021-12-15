@@ -2,6 +2,7 @@ package com.isep.group4.android_weather_forecast.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -58,8 +59,6 @@ public class fragment_current_weather_top extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            lat = getArguments().getDouble(ARG_LAT);
-            lon = getArguments().getDouble(ARG_LON);
         }
         else {
 
@@ -90,6 +89,4 @@ public class fragment_current_weather_top extends Fragment {
             }
         }).start();
     }
-
-
 }

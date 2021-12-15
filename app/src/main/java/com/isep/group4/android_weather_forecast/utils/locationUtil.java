@@ -1,23 +1,17 @@
 package com.isep.group4.android_weather_forecast.utils;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -90,6 +84,6 @@ public class locationUtil {
     private static void showLocation(final Location location,Context context) {
         Double latitude = location.getLatitude();
         Double longitude = location.getLongitude();
-        sharedPreferenceUtil.saved(context,latitude,longitude);
+        sharedPreferenceUtil.saveLatLon(context,latitude,longitude);
     }
 }

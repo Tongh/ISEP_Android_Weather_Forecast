@@ -61,7 +61,7 @@ public class HttpUtil {
                         try {
                             activity.runOnUiThread(()->{
                                 if (currentWeather!=null){
-                                    //sharedPreferenceUtil.
+                                    sharedPreferenceUtil.saveCurrentWeather(activity, currentWeather);
                                 }
                             });
                         } catch (Exception e) {
