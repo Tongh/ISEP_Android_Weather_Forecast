@@ -12,7 +12,7 @@ public class Current {
     private int pressure;
     private int humidity;
     private double dew_point;
-    private int uvi;
+    private double uvi;
     private int clouds;
     private int visibility;
     private double wind_speed;
@@ -75,10 +75,10 @@ public class Current {
         return dew_point;
     }
 
-    public void setUvi(int uvi) {
+    public void setUvi(double uvi) {
         this.uvi = uvi;
     }
-    public int getUvi() {
+    public double getUvi() {
         return uvi;
     }
 

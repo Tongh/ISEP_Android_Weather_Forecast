@@ -11,14 +11,14 @@ public class Hourly {
     private int pressure;
     private int humidity;
     private double dew_point;
-    private int uvi;
+    private double uvi;
     private int clouds;
     private int visibility;
     private double wind_speed;
     private int wind_deg;
     private double wind_gust;
     private List<Weather> weather;
-    private int pop;
+    private double pop;
 
 
     public void setDt(long dt) {
@@ -63,10 +63,10 @@ public class Hourly {
         return dew_point;
     }
 
-    public void setUvi(int uvi) {
+    public void setUvi(double uvi) {
         this.uvi = uvi;
     }
-    public int getUvi() {
+    public double getUvi() {
         return uvi;
     }
 
@@ -112,10 +112,10 @@ public class Hourly {
         return weather;
     }
 
-    public void setPop(int pop) {
+    public void setPop(double pop) {
         this.pop = pop;
     }
-    public int getPop() {
+    public double getPop() {
         return pop;
     }
 

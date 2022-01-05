@@ -21,7 +21,7 @@ public class Daily {
     private double wind_gust;
     private List<Weather> weather;
     private int clouds;
-    private int pop;
+    private double pop;
     private double uvi;
     public void setDt(long dt) {
         this.dt = dt;
@@ -135,10 +135,10 @@ public class Daily {
         return clouds;
     }
 
-    public void setPop(int pop) {
+    public void setPop(double pop) {
         this.pop = pop;
     }
-    public int getPop() {
+    public double getPop() {
         return pop;
     }
 
