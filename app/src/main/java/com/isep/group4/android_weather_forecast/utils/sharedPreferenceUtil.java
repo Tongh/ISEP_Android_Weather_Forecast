@@ -7,9 +7,9 @@ import android.content.SharedPreferences;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
 public class sharedPreferenceUtil {
-    static Double latitude;
-    static Double longitude;
-    static CurrentWeather currentWeather;
+    private static Double latitude;
+    private static Double longitude;
+    private static volatile CurrentWeather currentWeather;
 
     static public void saveLatLon(Context context, Double latitude, Double longitude){
         sharedPreferenceUtil.latitude = latitude;

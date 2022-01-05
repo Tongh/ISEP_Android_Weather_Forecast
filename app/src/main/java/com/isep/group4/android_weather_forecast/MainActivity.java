@@ -18,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
         registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(),
                 result -> {
                     if (result) {
-                        locationUtil.getlocation(this,this);
+                        locationUtil.getLocation(this, this);
+                        getWeather(this);
                         Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
@@ -39,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+    }
+
+    public static void getWeather(AppCompatActivity activity) {
+        //获取经纬度
+        Double latitude = sharedPreferenceUtil.getLatitude();
+        Double longitude = sharedPreferenceUtil.getLongitude();
+        HttpUtil.requestCurrentWeather(latitude, longitude, activity);
+        //通过经纬度获取天气信息和城市名
     }
 
 //    private void refreshLineChart(){

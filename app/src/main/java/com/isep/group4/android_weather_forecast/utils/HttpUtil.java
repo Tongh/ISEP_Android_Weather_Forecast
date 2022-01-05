@@ -20,7 +20,7 @@ import okhttp3.Response;
 
 public class HttpUtil {
     public static void requestCityInfo(String cityname, AppCompatActivity activity) {
-        HttpUtil.sendOkhttpRequst("https://maps.googleapis.com/maps/api/geocode/json?address=" + cityname + "&key=AIzaSyAYE39CrIN_0fcSmDERaroK_lXrE8VwWMk",
+        HttpUtil.sendOkhttpRequest("https://maps.googleapis.com/maps/api/geocode/json?address=" + cityname + "&key=AIzaSyAYE39CrIN_0fcSmDERaroK_lXrE8VwWMk",
                 new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -30,13 +30,20 @@ public class HttpUtil {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         String responseData = response.body().string();
-                        CitySearch citySearch =  handleUtils.handleCitySearch(responseData);
+                        CitySearch citySearch = handleUtils.handleCitySearch(responseData);
                         try {
-                            activity.runOnUiThread(()->{
-                                if (citySearch!=null&&citySearch.getStatus().equals("OK")){
-
-                                }
-                            });
+                            if (citySearch != null && citySearch.getStatus().equals("OK")) {
+                                Results results = citySearch.getResults().get(0);
+                                Geometry geometry = results.getGeometry();
+                                Location location = geometry.getLocation();
+                                double lat = location.getLat();
+                                double lon = location.getLng();
+                                Log.d("Query_requestCityInfo", cityname + " " + results.getAddress_components().get(0).getLong_name());
+                                activity.runOnUiThread(() -> {
+                                    sharedPreferenceUtil.saveLatLon(activity, lat, lon);
+                                    MainActivity.getWeather(activity);
+                                });
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -47,7 +54,7 @@ public class HttpUtil {
     public static void requestCurrentWeather(double lat, double lon, AppCompatActivity activity) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat
                 + "&lon=" + lon + "&appid=4b1fe12967fbc1e9b76903af4985d45f";
-        HttpUtil.sendOkhttpRequst(url,
+        HttpUtil.sendOkhttpRequest(url,
                 new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -57,11 +64,13 @@ public class HttpUtil {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         String responseData = response.body().string();
-                        CurrentWeather currentWeather =  handleUtils.handleCurrentWeather(responseData);
+                        CurrentWeather currentWeather = handleUtils.handleCurrentWeather(responseData);
                         try {
-                            activity.runOnUiThread(()->{
-                                if (currentWeather!=null){
+                            activity.runOnUiThread(() -> {
+                                Log.d("Query_CurrentWeather", currentWeather.getName());
+                                if (currentWeather != null) {
                                     sharedPreferenceUtil.saveCurrentWeather(activity, currentWeather);
+                                    activity.startActivity(new Intent(activity, WeatherActivity.class));
                                 }
                             });
                         } catch (Exception e) {
@@ -71,7 +80,7 @@ public class HttpUtil {
                 });
     }
 
-    public static void sendOkhttpRequst(String address, okhttp3.Callback callback) {
+    public static void sendOkhttpRequest(String address, okhttp3.Callback callback) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(address)

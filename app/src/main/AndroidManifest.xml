@@ -15,6 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_Weather_Forecast">
+        <service
+            android:name=".services.UpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:launchMode="singleTask"
+            android:name=".WeatherActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
