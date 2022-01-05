@@ -25,7 +25,6 @@ public class httpForecast {
         client.newCall(request).enqueue(callback);
     }
 
-
     //double lat, double lon
     public static void handleForecast(){
         httpForecast.sendOkhttpRequst("https://api.openweathermap.org/data/2.5/onecall?lat=48.824272&lon=2.27326&appid=4b1fe12967fbc1e9b76903af4985d45f",
@@ -34,24 +33,27 @@ public class httpForecast {
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
                         Log.d("Failed", e.toString());
                     }
-
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String responseData = response.body().string();
                         Forecast forecast = handleUtils.handleForecast(responseData);
-
-
+//                        Log.d("dailyDay", String.valueOf(forecast.getDaily().get(1).getTemp().getDay()));
+//                        forecast.getDaily().forEach(daily -> Log.d("dailyDay", String.valueOf(daily.getTemp().getDay())));
+//                        for(int i=0; i<15;i++){
+//                            String hourlyTemp = String.valueOf(forecast.getHourly().get(i).getTemp());
+//                            Log.d("HourlyData", hourlyTemp);
+//                        }
                         try{
-                            activity.runOnUiThread(()->{
-
-                            });
+//                            activity.runOnUiThread(()->{
+//
+//                            });
+//                            forecast.getDaily().forEach(daily -> Log.d("dailyDay", String.valueOf(daily.getTemp().getDay())));
                         }catch (Exception e){
                             e.printStackTrace();
                         }
 
                     }
                 });
-
     }
 
 //    public static void handleForecast(double lat, double lon){

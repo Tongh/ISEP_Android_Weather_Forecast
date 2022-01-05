@@ -5,27 +5,45 @@ import com.github.abel533.echarts.axis.ValueAxis;
 import com.github.abel533.echarts.code.Trigger;
 import com.github.abel533.echarts.json.GsonOption;
 import com.github.abel533.echarts.series.Line;
+import com.github.abel533.echarts.series.Series;
+import com.github.abel533.echarts.style.ItemStyle;
+
+import org.json.JSONObject;
+
+import java.util.LinkedList;
+import java.util.List;
+import com.github.abel533.echarts.code.AxisType;
+import com.github.abel533.echarts.code.SeriesType;
+import com.github.abel533.echarts.Label;
 
 public class echartOption {
 
-    public static GsonOption getLineChartOptions(Object[] xAxis, Object[] yAxis) {
+    public static GsonOption getLineChartOptions(Object[] minimumTem, Object[] maximumTem) {
         GsonOption option = new GsonOption();
-        option.title("Linear Chart");
-        option.legend("销量");
-        option.tooltip().trigger(Trigger.axis);
+        //        option.title("Linear Chart");
+//        option.legend("销量");
+//        option.tooltip().trigger(Trigger.axis);
+        ValueAxis valueXAxis = new ValueAxis();
+        valueXAxis.show(false);
+        valueXAxis.type(AxisType.category);
+        option.xAxis(valueXAxis);
 
-        ValueAxis valueAxis = new ValueAxis();
-        option.yAxis(valueAxis);
+        ValueAxis valueYAxis = new ValueAxis();
+        valueYAxis.show(false);
+        option.yAxis(valueYAxis);
 
-        CategoryAxis categorxAxis = new CategoryAxis();
-        categorxAxis.axisLine().onZero(false);
-        categorxAxis.boundaryGap(true);
-        categorxAxis.data(xAxis);
-        option.xAxis(categorxAxis);
+        Line minimumLine = new Line();
+        Label minimumLabel = new Label();
+        minimumLabel.show(false).position("bottom");
+        minimumLine.name("minimum").data(minimumTem).stack("Total").symbol(false).itemStyle().normal().lineStyle();
 
-        Line line = new Line();
-        line.smooth(false).name("销量").data(yAxis).itemStyle().normal().lineStyle().shadowColor("rgba(0,0,0,0.4)");
-        option.series(line);
+
+
+        Line maximumLine = new Line();
+        maximumLine.name("maximum").data(maximumTem).stack("Total").symbol(false).areaStyle();
+
+        option.series(minimumLine,maximumLine);
+
         return option;
     }
 }

@@ -13,6 +13,7 @@ import com.isep.group4.android_weather_forecast.beans.city.Geometry;
 import com.isep.group4.android_weather_forecast.beans.city.Location;
 import com.isep.group4.android_weather_forecast.beans.city.Results;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
+import com.isep.group4.android_weather_forecast.beans.forecast.Forecast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -85,6 +86,55 @@ public class HttpUtil {
                     }
                 });
     }
+
+    public static void handleForecast(double lat, double lon, AppCompatActivity activity){
+        httpForecast.sendOkhttpRequst("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid=4b1fe12967fbc1e9b76903af4985d45f",
+                new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        Log.d("Failed", "onFailure: 1111111");
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        String responseData = response.body().string();
+                        Forecast forecast = handleUtils.handleForecast(responseData);
+                        try{
+                            activity.runOnUiThread(()->{
+
+                            });
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+    }
+
+//    //double lat, double lon
+//    public static void handleForecast(AppCompatActivity activity){
+//        httpForecast.sendOkhttpRequst("https://api.openweathermap.org/data/2.5/onecall?lat=48.824272&lon=2.27326&appid=4b1fe12967fbc1e9b76903af4985d45f",
+//                new Callback() {
+//                    @Override
+//                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+//                        Log.d("Failed", e.toString());
+//                    }
+//
+//                    @Override
+//                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+//                        String responseData = response.body().string();
+//                        Forecast forecast = handleUtils.handleForecast(responseData);
+//                        try{
+//                            activity.runOnUiThread(()->{
+//
+//                            });
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                });
+//    }
 
     public static void sendOkhttpRequest(String address, okhttp3.Callback callback) {
         OkHttpClient client = new OkHttpClient();
