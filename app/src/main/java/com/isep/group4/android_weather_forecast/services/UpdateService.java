@@ -1,4 +1,4 @@
-package com.example.weatherapp.services;
+package com.isep.group4.android_weather_forecast.services;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -13,8 +13,9 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.weatherapp.WeatherActivity;
-import com.example.weatherapp.utils.HttpUtil;
+import com.isep.group4.android_weather_forecast.WeatherActivity;
+import com.isep.group4.android_weather_forecast.utils.HttpUtil;
+
 
 public class UpdateService extends Service {
     AppCompatActivity activity;

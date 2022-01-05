@@ -1,4 +1,4 @@
-package com.example.weatherapp.utils;
+package com.isep.group4.android_weather_forecast.utils;
 
 import java.text.DecimalFormat;
 

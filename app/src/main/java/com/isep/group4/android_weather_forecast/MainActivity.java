@@ -9,7 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
+import com.isep.group4.android_weather_forecast.utils.HttpUtil;
 import com.isep.group4.android_weather_forecast.utils.locationUtil;
+import com.isep.group4.android_weather_forecast.utils.sharedPreferenceUtil;
+
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 new ActivityResultContracts.RequestPermission(),
                 result -> {
                     if (result) {
-                        locationUtil.getLocation(this, this);
+                        locationUtil.getlocation(this, this);
                         getWeather(this);
                         Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
                     } else {

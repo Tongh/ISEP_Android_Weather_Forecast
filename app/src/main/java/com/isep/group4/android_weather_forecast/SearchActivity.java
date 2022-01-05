@@ -1,4 +1,4 @@
-package com.example.weatherapp;
+package com.isep.group4.android_weather_forecast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.weatherapp.utils.HttpUtil;
+import com.isep.group4.android_weather_forecast.utils.HttpUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

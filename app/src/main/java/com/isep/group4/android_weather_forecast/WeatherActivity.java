@@ -1,4 +1,4 @@
-package com.example.weatherapp;
+package com.isep.group4.android_weather_forecast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,16 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.example.weatherapp.beans.current_weather.CurrentWeather;
-import com.example.weatherapp.beans.current_weather.Main;
-
 import java.util.List;
 
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.example.weatherapp.utils.tempUtil;
-import com.example.weatherapp.utils.sharedPreferenceUtil;
+import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
+import com.isep.group4.android_weather_forecast.beans.current_weather.Main;
+import com.isep.group4.android_weather_forecast.services.UpdateService;
+import com.isep.group4.android_weather_forecast.utils.sharedPreferenceUtil;
+import com.isep.group4.android_weather_forecast.utils.tempUtil;
 
 
 public class WeatherActivity extends AppCompatActivity {
@@ -57,7 +57,7 @@ public class WeatherActivity extends AppCompatActivity {
         textViews.get(4).setText(tempUtil.transfer(main.getTemp_max()));
         //设置高低温度
 
-        Intent intent = new Intent(this,UpdateService.class);
+        Intent intent = new Intent(this, UpdateService.class);
         startService(intent);
     }
 

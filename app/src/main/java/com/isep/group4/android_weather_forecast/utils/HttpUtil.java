@@ -1,11 +1,17 @@
 package com.isep.group4.android_weather_forecast.utils;
 
 
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.isep.group4.android_weather_forecast.MainActivity;
+import com.isep.group4.android_weather_forecast.WeatherActivity;
 import com.isep.group4.android_weather_forecast.beans.city.CitySearch;
+import com.isep.group4.android_weather_forecast.beans.city.Geometry;
+import com.isep.group4.android_weather_forecast.beans.city.Location;
+import com.isep.group4.android_weather_forecast.beans.city.Results;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
 import org.jetbrains.annotations.NotNull;
