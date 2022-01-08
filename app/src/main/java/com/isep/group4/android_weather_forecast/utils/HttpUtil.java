@@ -4,20 +4,26 @@ package com.isep.group4.android_weather_forecast.utils;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.isep.group4.android_weather_forecast.MainActivity;
 import com.isep.group4.android_weather_forecast.WeatherActivity;
+import com.isep.group4.android_weather_forecast.adpaters.HourWeatherAdapter;
+import com.isep.group4.android_weather_forecast.beans.adapter.HourWeather;
 import com.isep.group4.android_weather_forecast.beans.city.CitySearch;
 import com.isep.group4.android_weather_forecast.beans.city.Geometry;
 import com.isep.group4.android_weather_forecast.beans.city.Location;
 import com.isep.group4.android_weather_forecast.beans.city.Results;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 import com.isep.group4.android_weather_forecast.beans.forecast.Forecast;
+import com.isep.group4.android_weather_forecast.beans.forecast.Hourly;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -26,6 +32,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class HttpUtil {
+    static int status = 0;
     public static void requestCityInfo(String cityname, AppCompatActivity activity) {
         HttpUtil.sendOkhttpRequest("https://maps.googleapis.com/maps/api/geocode/json?address=" + cityname + "&key=AIzaSyAYE39CrIN_0fcSmDERaroK_lXrE8VwWMk",
                 new Callback() {
@@ -75,10 +82,11 @@ public class HttpUtil {
                         try {
                             activity.runOnUiThread(() -> {
                                 Log.d("Query_CurrentWeather", currentWeather.getName());
-                                if (currentWeather != null) {
-                                    sharedPreferenceUtil.saveCurrentWeather(activity, currentWeather);
-                                    activity.startActivity(new Intent(activity, WeatherActivity.class));
+                                sharedPreferenceUtil.saveCurrentWeather(activity, currentWeather);
+                                while (status==0){
+                                    Log.d("Forecast_Hour_Weather",status+"");
                                 }
+                                activity.startActivity(new Intent(activity, WeatherActivity.class));
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -87,54 +95,35 @@ public class HttpUtil {
                 });
     }
 
-    public static void handleForecast(double lat, double lon, AppCompatActivity activity){
-        httpForecast.sendOkhttpRequst("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid=4b1fe12967fbc1e9b76903af4985d45f",
-                new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        Log.d("Failed", "onFailure: 1111111");
-                    }
+    public static void requestForecast(double lat, double lon, AppCompatActivity activity) {
+        String url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4b1fe12967fbc1e9b76903af4985d45f";
+        HttpUtil.sendOkhttpRequest(url, new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.d("Failed", "onFailure");
+            }
 
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        String responseData = response.body().string();
-                        Forecast forecast = handleUtils.handleForecast(responseData);
-                        try{
-                            activity.runOnUiThread(()->{
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                status = 0;
+                String responseData = response.body().string();
+                Forecast forecast = handleUtils.handleForecast(responseData);
+                Log.d("Forecast_Hour_Weather", forecast.toString());
 
-                            });
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-
-                    }
-                });
+                //将数据进行解析存入recyclerview中
+                Log.d("Forecast_Hour_Weather", "runOnUiThread");
+                List<Hourly> hourlies = forecast.getHourly();
+                ArrayList<HourWeather> list = new ArrayList<>();
+                for (Hourly hourly : hourlies) {
+                    list.add(new HourWeather(timeUtil.Transfer(hourly.getDt()), hourly.getWeather().get(0).getMain(),
+                            tempUtil.transfer(hourly.getTemp())));
+                }
+                Log.d("Forecast_Hour_Weather", "setData");
+                sharedPreferenceUtil.setHourWeathers(list);
+                status = 1;
+            }
+        });
     }
-
-//    //double lat, double lon
-//    public static void handleForecast(AppCompatActivity activity){
-//        httpForecast.sendOkhttpRequst("https://api.openweathermap.org/data/2.5/onecall?lat=48.824272&lon=2.27326&appid=4b1fe12967fbc1e9b76903af4985d45f",
-//                new Callback() {
-//                    @Override
-//                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
-//                        Log.d("Failed", e.toString());
-//                    }
-//
-//                    @Override
-//                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-//                        String responseData = response.body().string();
-//                        Forecast forecast = handleUtils.handleForecast(responseData);
-//                        try{
-//                            activity.runOnUiThread(()->{
-//
-//                            });
-//                        }catch (Exception e){
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                });
-//    }
 
     public static void sendOkhttpRequest(String address, okhttp3.Callback callback) {
         OkHttpClient client = new OkHttpClient();

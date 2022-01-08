@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
 
-        displayEchart();
+        //displayEchart();
 
         //        lineChart = findViewById(R.id.lineChart);
 //        lineChart.setWebViewClient(new WebViewClient(){
@@ -59,10 +60,16 @@ public class MainActivity extends AppCompatActivity {
         //获取经纬度
         Double latitude = sharedPreferenceUtil.getLatitude();
         Double longitude = sharedPreferenceUtil.getLongitude();
+
+        Log.d("Forecast_Hour_Weather",latitude+" "+longitude);
+        HttpUtil.requestForecast(latitude, longitude, activity);
+        //通过经纬度获取一天的天气预报
+
         HttpUtil.requestCurrentWeather(latitude, longitude, activity);
         //通过经纬度获取天气信息和城市名
     }
 
+    /*
     public void displayEchart(){
         lineChart = findViewById(R.id.lineChart);
         lineChart.setWebViewClient(new WebViewClient(){
@@ -82,14 +89,6 @@ public class MainActivity extends AppCompatActivity {
         lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(x, y));
     }
 
-
-
-
-    public void updateCurrentWeather() {
-
-    }
-
-
-
+     */
 
 }

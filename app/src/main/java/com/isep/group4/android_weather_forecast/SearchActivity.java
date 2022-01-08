@@ -27,15 +27,15 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setIconified(false);
         searchView.setSubmitButtonEnabled(true);
 
-        searchView.setOnSearchClickListener((view)->{
+        searchView.setOnSearchClickListener((view) -> {
 
         });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("Query_onQueryTextSubmit",query);
-                HttpUtil.requestCityInfo(query,SearchActivity.this);
+                Log.d("Query_onQueryTextSubmit", query);
+                HttpUtil.requestCityInfo(query, SearchActivity.this);
                 return true;
             }
 

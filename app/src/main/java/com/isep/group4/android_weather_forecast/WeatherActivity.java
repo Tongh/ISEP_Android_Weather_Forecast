@@ -1,6 +1,8 @@
 package com.isep.group4.android_weather_forecast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,9 +12,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import com.isep.group4.android_weather_forecast.adpaters.HourWeatherAdapter;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 import com.isep.group4.android_weather_forecast.beans.current_weather.Main;
 import com.isep.group4.android_weather_forecast.services.UpdateService;
@@ -27,6 +32,9 @@ public class WeatherActivity extends AppCompatActivity {
             , R.id.lowest_temp, R.id.highest_temp})
     List<TextView> textViews;
 
+    @BindView(R.id.hour_recycler)
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +46,7 @@ public class WeatherActivity extends AppCompatActivity {
     public void setWeather() {
         CurrentWeather currentWeather = sharedPreferenceUtil.getCurrentWeather();
         Log.d("setWeather", currentWeather.toString());
-        Log.d("Query_setWeather",currentWeather.getName());
+        Log.d("Query_setWeather", currentWeather.getName());
         Log.d("setWeather", currentWeather.getName());
         textViews.get(0).setText(currentWeather.getName());
         //设置城市名
@@ -57,14 +65,25 @@ public class WeatherActivity extends AppCompatActivity {
         textViews.get(4).setText(tempUtil.transfer(main.getTemp_max()));
         //设置高低温度
 
+        /*
+         * 设置一天的天气预报
+         */
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(manager);
+        if (sharedPreferenceUtil.getHourWeathers().size() > 0) {
+            HourWeatherAdapter hourWeatherAdapter = new HourWeatherAdapter(sharedPreferenceUtil.getHourWeathers());
+            recyclerView.setAdapter(hourWeatherAdapter);
+        }
+
         Intent intent = new Intent(this, UpdateService.class);
         startService(intent);
     }
 
     @SuppressLint("NonConstantResourceId")
     @OnClick(R.id.search_city_btn)
-    public void searchCity(){
-        Intent intent = new Intent(this,SearchActivity.class);
+    public void searchCity() {
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 

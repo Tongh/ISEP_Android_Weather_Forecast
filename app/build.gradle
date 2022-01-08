@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.isep.group4.android_weather_forecast"
-        minSdk 28
+        minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"

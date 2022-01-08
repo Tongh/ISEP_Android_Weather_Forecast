@@ -3,7 +3,7 @@ package com.isep.group4.android_weather_forecast.beans.forecast;
 public class Minutely {
 
     private long dt;
-    private int precipitation;
+    private double precipitation;
 
     public void setDt(long dt) {
         this.dt = dt;
@@ -12,10 +12,10 @@ public class Minutely {
         return dt;
     }
 
-    public void setPrecipitation(int precipitation) {
+    public void setPrecipitation(double precipitation) {
         this.precipitation = precipitation;
     }
-    public int getPrecipitation() {
+    public double getPrecipitation() {
         return precipitation;
     }
 

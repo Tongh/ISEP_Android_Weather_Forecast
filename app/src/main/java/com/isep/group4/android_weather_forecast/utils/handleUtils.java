@@ -24,7 +24,6 @@ public class handleUtils {
     public static Forecast handleForecast(String response){
         try {
             JSONObject object = new JSONObject(response);
-            Log.d("Forecast",object.toString());
             Forecast forecast = new Gson().fromJson(object.toString(), Forecast.class);
             return forecast;
         }catch (Exception e){
