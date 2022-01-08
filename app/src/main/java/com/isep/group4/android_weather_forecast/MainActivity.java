@@ -29,17 +29,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-//        registerForActivityResult(
-//                new ActivityResultContracts.RequestPermission(),
-//                result -> {
-//                    if (result) {
-//                        locationUtil.getlocation(this, this);
-//                        getWeather(this);
-//                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
-//                    }
-//                }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
+        registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                result -> {
+                    if (result) {
+                        locationUtil.getlocation(this, this);
+                        getWeather(this);
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
+                    }
+                }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
 
         displayEchart();
 
