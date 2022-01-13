@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.isep.group4.android_weather_forecast.beans.adapter.DayWeather;
 import com.isep.group4.android_weather_forecast.beans.adapter.HourWeather;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
@@ -15,7 +16,9 @@ public class sharedPreferenceUtil {
     private static Double longitude;
     private static volatile CurrentWeather currentWeather;
     private static ArrayList<HourWeather> hourWeathers;
+    private static ArrayList<DayWeather> dailyWeathers;
     private static Context context;
+    private static Context contextDaily;
 
     static public void saveLatLon(Context context, Double latitude, Double longitude) {
         sharedPreferenceUtil.context = context;
@@ -54,5 +57,16 @@ public class sharedPreferenceUtil {
     public static ArrayList<HourWeather> getHourWeathers() {
         Log.d("Forecast_Hour_Weather",hourWeathers.size()+"get");
         return hourWeathers;
+    }
+
+    public static void setDailyWeathers(ArrayList<DayWeather> dayWeathers){
+        @SuppressLint("CommitPrefEdits")
+        SharedPreferences.Editor editor = contextDaily.getSharedPreferences("DailyWeathers", Context.MODE_PRIVATE).edit();
+        editor.putString("dailyweathers", dayWeathers.toString());
+        sharedPreferenceUtil.dailyWeathers = dayWeathers;
+    }
+
+    public static ArrayList<DayWeather> getDailyWeathers(){
+        return dailyWeathers;
     }
 }

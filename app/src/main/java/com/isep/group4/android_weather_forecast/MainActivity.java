@@ -21,8 +21,8 @@ import com.isep.group4.android_weather_forecast.utils.sharedPreferenceUtil;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    public static EchartView lineChart;
 
-    private EchartView lineChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +42,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
 
-        //displayEchart();
 
-        //        lineChart = findViewById(R.id.lineChart);
-//        lineChart.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                super.onPageFinished(view, url);
-//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
-//                refreshLineChart();
-//            }
-//        });
+                displayEchart();
+        lineChart = findViewById(R.id.lineChart);
+        lineChart.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
+                refreshLineChart();
+            }
+        });
 
     }
 
@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity {
         //通过经纬度获取天气信息和城市名
     }
 
-    /*
-    public void displayEchart(){
+        public void displayEchart(){
         lineChart = findViewById(R.id.lineChart);
         lineChart.setWebViewClient(new WebViewClient(){
             @Override
@@ -89,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(x, y));
     }
 
-     */
+
+
+
+
 
 }

@@ -10,12 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.isep.group4.android_weather_forecast.MainActivity;
 import com.isep.group4.android_weather_forecast.WeatherActivity;
 import com.isep.group4.android_weather_forecast.adpaters.HourWeatherAdapter;
+import com.isep.group4.android_weather_forecast.beans.adapter.DayWeather;
 import com.isep.group4.android_weather_forecast.beans.adapter.HourWeather;
 import com.isep.group4.android_weather_forecast.beans.city.CitySearch;
 import com.isep.group4.android_weather_forecast.beans.city.Geometry;
 import com.isep.group4.android_weather_forecast.beans.city.Location;
 import com.isep.group4.android_weather_forecast.beans.city.Results;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
+import com.isep.group4.android_weather_forecast.beans.forecast.Daily;
 import com.isep.group4.android_weather_forecast.beans.forecast.Forecast;
 import com.isep.group4.android_weather_forecast.beans.forecast.Hourly;
 
@@ -120,7 +122,27 @@ public class HttpUtil {
                 }
                 Log.d("Forecast_Hour_Weather", "setData");
                 sharedPreferenceUtil.setHourWeathers(list);
+
+
+
+                List<Daily> dailies = forecast.getDaily();
+                ArrayList<DayWeather> listDayWeather = new ArrayList<>();
+                for(Daily daily : dailies) {
+                    listDayWeather.add(new DayWeather(timeUtil.Transfer(daily.getDt()), daily.getWeather().get(0).getMain(),
+                            tempUtil.transfer(daily.getTemp().getDay())));
+                }
+                sharedPreferenceUtil.setDailyWeathers(listDayWeather);
+
+
+
+
+
+
                 status = 1;
+
+
+
+
             }
         });
     }

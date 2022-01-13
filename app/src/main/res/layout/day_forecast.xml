@@ -1,0 +1,17 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:orientation="vertical">
+    <TextView
+        android:textAllCaps="false"
+        android:text="day_weather_forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/day_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

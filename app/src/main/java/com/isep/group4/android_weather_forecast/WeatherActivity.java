@@ -8,6 +8,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,9 +20,12 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import com.isep.group4.android_weather_forecast.adpaters.DayWeatherAdapter;
 import com.isep.group4.android_weather_forecast.adpaters.HourWeatherAdapter;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 import com.isep.group4.android_weather_forecast.beans.current_weather.Main;
+import com.isep.group4.android_weather_forecast.echarts.EchartView;
+import com.isep.group4.android_weather_forecast.echarts.echartOption;
 import com.isep.group4.android_weather_forecast.services.UpdateService;
 import com.isep.group4.android_weather_forecast.utils.sharedPreferenceUtil;
 import com.isep.group4.android_weather_forecast.utils.tempUtil;
@@ -27,6 +33,7 @@ import com.isep.group4.android_weather_forecast.utils.tempUtil;
 
 public class WeatherActivity extends AppCompatActivity {
     public static AppCompatActivity activity;
+//    public static EchartView lineChart;
 
     @BindViews({R.id.city_name, R.id.curr_temp, R.id.weather_status
             , R.id.lowest_temp, R.id.highest_temp})
@@ -34,6 +41,9 @@ public class WeatherActivity extends AppCompatActivity {
 
     @BindView(R.id.hour_recycler)
     RecyclerView recyclerView;
+
+    @BindView(R.id.day_recycler)
+    RecyclerView recyclerViewDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +86,23 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerView.setAdapter(hourWeatherAdapter);
         }
 
+        //一周天气预报echarts
+        LinearLayoutManager managerDay = new LinearLayoutManager(this);
+        managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewDay.setLayoutManager(managerDay);
+        if(sharedPreferenceUtil.getDailyWeathers().size() > 0){
+            DayWeatherAdapter dayWeatherAdapter = new DayWeatherAdapter(sharedPreferenceUtil.getDailyWeathers());
+            recyclerViewDay.setAdapter(dayWeatherAdapter);
+        }
+
+        //runEcharts();
+
         Intent intent = new Intent(this, UpdateService.class);
         startService(intent);
+
+
+
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -92,4 +117,36 @@ public class WeatherActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         setWeather();
     }
+
+//    public void runEcharts(){
+//        displayEchart();
+//        lineChart = findViewById(R.id.lineChart);
+//        lineChart.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
+//                refreshLineChart();
+//            }
+//        });
+//    }
+//
+//    public void displayEchart(){
+//        lineChart = findViewById(R.id.lineChart);
+//        lineChart.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
+//                refreshLineChart();
+//            }
+//        });
+//    }
+//
+//    //配置object[] x 以及 object[] y
+//    private void refreshLineChart(){
+//        Object[] x = new Object[]{220, 182, 191, 234, 290, 330, 310};
+//        Object[] y = new Object[]{820, 932, 901, 934, 1290, 1330, 1320};
+//        lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(x, y));
+//    }
 }
