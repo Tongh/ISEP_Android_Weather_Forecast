@@ -6,9 +6,148 @@
     tools:context=".fragments.fragment_current_weather_bottom">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:paddingLeft="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Detail"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/empty_fat_divider"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:gravity="bottom"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Humidity"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:gravity="bottom"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Pressure"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/empty_fat_divider"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:id="@+id/tv_humidity"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:fontFamily="monospace"
+                        android:gravity="top"
+                        android:text="97.0%"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_pressure"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:gravity="top"
+                        android:fontFamily="monospace"
+                        android:text="1023 hPa"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/empty_fat_divider"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="bottom"
+                        android:text="Visibility"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_wind_direction"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="bottom"
+                        android:text="South wind"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/empty_fat_divider"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:fontFamily="monospace"
+                        android:gravity="top"
+                        android:text="11.27 km"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_visibility"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:gravity="top"
+                        android:fontFamily="monospace"
+                        android:text="3.0 km/h"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

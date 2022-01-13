@@ -36,7 +36,8 @@ public class WeatherActivity extends AppCompatActivity {
 //    public static EchartView lineChart;
 
     @BindViews({R.id.city_name, R.id.curr_temp, R.id.weather_status
-            , R.id.lowest_temp, R.id.highest_temp})
+            , R.id.lowest_temp, R.id.highest_temp, R.id.tv_humidity
+            , R.id.tv_pressure, R.id.tv_visibility, R.id.tv_wind_direction})
     List<TextView> textViews;
 
     @BindView(R.id.hour_recycler)
@@ -74,6 +75,18 @@ public class WeatherActivity extends AppCompatActivity {
         textViews.get(3).setText(tempUtil.transfer(main.getTemp_min()));
         textViews.get(4).setText(tempUtil.transfer(main.getTemp_max()));
         //设置高低温度
+
+        textViews.get(5).setText(currentWeather.getMain().getHumidity() + "%");
+        //设置湿度
+
+        textViews.get(6).setText(currentWeather.getMain().getPressure() + " hPa");
+        //设置气压
+
+        textViews.get(7).setText(currentWeather.getVisibility() / 1000 + " hPa");
+        //设置能见度
+
+        textViews.get(7).setText(currentWeather.getVisibility() / 1000 + " hPa");
+        //设置能见度
 
         /*
          * 设置一天的天气预报

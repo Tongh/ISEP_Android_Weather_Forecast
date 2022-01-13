@@ -18,6 +18,7 @@
             android:orientation="vertical">
             <include layout="@layout/now_weather"/>
             <include layout="@layout/hours_forecast"/>
+            <include layout="@layout/fragment_current_weather_bottom"/>
         </LinearLayout>
 
     </ScrollView>
