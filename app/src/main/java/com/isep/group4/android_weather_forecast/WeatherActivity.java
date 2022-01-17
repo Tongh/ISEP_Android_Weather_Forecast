@@ -33,7 +33,7 @@ import com.isep.group4.android_weather_forecast.utils.tempUtil;
 
 public class WeatherActivity extends AppCompatActivity {
     public static AppCompatActivity activity;
-//    public static EchartView lineChart;
+    EchartView lineChart;
 
     @BindViews({R.id.city_name, R.id.curr_temp, R.id.weather_status
             , R.id.lowest_temp, R.id.highest_temp, R.id.tv_humidity
@@ -108,7 +108,7 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerViewDay.setAdapter(dayWeatherAdapter);
         }
 
-        //runEcharts();
+        displayEchart();
 
         Intent intent = new Intent(this, UpdateService.class);
         startService(intent);
@@ -131,35 +131,25 @@ public class WeatherActivity extends AppCompatActivity {
         setWeather();
     }
 
-//    public void runEcharts(){
-//        displayEchart();
-//        lineChart = findViewById(R.id.lineChart);
-//        lineChart.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                super.onPageFinished(view, url);
-//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
-//                refreshLineChart();
-//            }
-//        });
-//    }
-//
-//    public void displayEchart(){
-//        lineChart = findViewById(R.id.lineChart);
-//        lineChart.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                super.onPageFinished(view, url);
-//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
-//                refreshLineChart();
-//            }
-//        });
-//    }
-//
-//    //配置object[] x 以及 object[] y
-//    private void refreshLineChart(){
+
+    public void displayEchart(){
+        lineChart = findViewById(R.id.lineChart);
+        lineChart.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
+                Object[] minimumTemp = sharedPreferenceUtil.getDailyMinTemp().toArray();
+                Object[] maximumTemp = sharedPreferenceUtil.getDailyMaxTemp().toArray();
+                refreshLineChart(minimumTemp,maximumTemp);
+            }
+        });
+    }
+
+    //配置object[] x 以及 object[] y
+    private void refreshLineChart(Object[] minimumTemp,Object[] maximumTemp){
 //        Object[] x = new Object[]{220, 182, 191, 234, 290, 330, 310};
 //        Object[] y = new Object[]{820, 932, 901, 934, 1290, 1330, 1320};
-//        lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(x, y));
-//    }
+        lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(minimumTemp, maximumTemp));
+    }
 }

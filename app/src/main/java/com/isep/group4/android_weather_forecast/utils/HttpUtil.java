@@ -124,7 +124,7 @@ public class HttpUtil {
                 sharedPreferenceUtil.setHourWeathers(list);
 
 
-
+                //将数据进行解析存入recyclerview中
                 List<Daily> dailies = forecast.getDaily();
                 ArrayList<DayWeather> listDayWeather = new ArrayList<>();
                 for(Daily daily : dailies) {
@@ -133,15 +133,20 @@ public class HttpUtil {
                 }
                 sharedPreferenceUtil.setDailyWeathers(listDayWeather);
 
+                //讲echarts需要的数据存入sharedPreference里
+                ArrayList<Double> minimumTempList = new ArrayList<>();
+                ArrayList<Double> maximumTempList = new ArrayList<>();
+                for(Daily daily : dailies){
+                    minimumTempList.add(daily.getTemp().getMin());
+                    maximumTempList.add(daily.getTemp().getMax());
+                }
+                sharedPreferenceUtil.setDailyMinMaxTemps(minimumTempList,maximumTempList);
 
 
 
 
 
                 status = 1;
-
-
-
 
             }
         });

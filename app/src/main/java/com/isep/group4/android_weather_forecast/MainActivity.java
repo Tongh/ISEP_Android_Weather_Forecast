@@ -21,7 +21,7 @@ import com.isep.group4.android_weather_forecast.utils.sharedPreferenceUtil;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    public static EchartView lineChart;
+//    public static EchartView lineChart;
 
 
     @Override
@@ -43,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
                 }).launch(Manifest.permission.ACCESS_FINE_LOCATION);
 
 
-                displayEchart();
-        lineChart = findViewById(R.id.lineChart);
-        lineChart.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
-                refreshLineChart();
-            }
-        });
+//                displayEchart();
+//        lineChart = findViewById(R.id.lineChart);
+//        lineChart.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
+//                refreshLineChart();
+//            }
+//        });
 
     }
 
@@ -69,24 +69,24 @@ public class MainActivity extends AppCompatActivity {
         //通过经纬度获取天气信息和城市名
     }
 
-        public void displayEchart(){
-        lineChart = findViewById(R.id.lineChart);
-        lineChart.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
-                refreshLineChart();
-            }
-        });
-    }
+//    public void displayEchart(){
+//        lineChart = findViewById(R.id.lineChart);
+//        lineChart.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                //最好在h5页面加载完毕后再加载数据，防止html的标签还未加载完成，不能正常显示
+//                refreshLineChart();
+//            }
+//        });
+//    }
 
     //配置object[] x 以及 object[] y
-    private void refreshLineChart(){
-        Object[] x = new Object[]{220, 182, 191, 234, 290, 330, 310};
-        Object[] y = new Object[]{820, 932, 901, 934, 1290, 1330, 1320};
-        lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(x, y));
-    }
+//    private void refreshLineChart(){
+//        Object[] x = new Object[]{220, 182, 191, 234, 290, 330, 310};
+//        Object[] y = new Object[]{820, 932, 901, 934, 1290, 1330, 1320};
+//        lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(x, y));
+//    }
 
 
 

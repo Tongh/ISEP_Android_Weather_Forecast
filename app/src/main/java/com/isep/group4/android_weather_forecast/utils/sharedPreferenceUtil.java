@@ -9,6 +9,7 @@ import com.isep.group4.android_weather_forecast.beans.adapter.DayWeather;
 import com.isep.group4.android_weather_forecast.beans.adapter.HourWeather;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class sharedPreferenceUtil {
@@ -17,8 +18,11 @@ public class sharedPreferenceUtil {
     private static volatile CurrentWeather currentWeather;
     private static ArrayList<HourWeather> hourWeathers;
     private static ArrayList<DayWeather> dailyWeathers;
+    private static ArrayList<Double> dailyMinTemp;
+    private static ArrayList<Double> dailyMaxTemp;
     private static Context context;
     private static Context contextDaily;
+    private static Context contextDailyMinMax;
 
     static public void saveLatLon(Context context, Double latitude, Double longitude) {
         sharedPreferenceUtil.context = context;
@@ -68,5 +72,21 @@ public class sharedPreferenceUtil {
 
     public static ArrayList<DayWeather> getDailyWeathers(){
         return dailyWeathers;
+    }
+
+    public static void setDailyMinMaxTemps(ArrayList<Double> minimumTemp,ArrayList<Double> maximumTemp){
+        @SuppressLint("CommitPrefEdits")
+                SharedPreferences.Editor editor = contextDailyMinMax.getSharedPreferences("DailyMinMaxTemps", Context.MODE_PRIVATE).edit();
+        editor.putString("dailyMinTemp", minimumTemp.toString());
+        editor.putString("dailyMaxTemp", maximumTemp.toString());
+        sharedPreferenceUtil.dailyMinTemp = minimumTemp;
+        sharedPreferenceUtil.dailyMaxTemp = maximumTemp;
+    }
+
+    public static ArrayList<Double> getDailyMinTemp() {
+        return dailyMinTemp;
+    }
+    public static ArrayList<Double> getDailyMaxTemp(){
+        return dailyMaxTemp;
     }
 }
