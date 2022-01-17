@@ -108,7 +108,7 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerViewDay.setAdapter(dayWeatherAdapter);
         }
 
-        displayEchart();
+//        displayEchart();
 
         Intent intent = new Intent(this, UpdateService.class);
         startService(intent);
