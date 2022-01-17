@@ -34,13 +34,21 @@ public class echartOption {
 
         Line minimumLine = new Line();
         Label minimumLabel = new Label();
-        minimumLabel.show(false).position("bottom");
+        minimumLabel.show(true).position("bottom");
+        ItemStyle minimumStyle = new ItemStyle();
+        minimumStyle.normal().label(minimumLabel);
         minimumLine.name("minimum").data(minimumTem).stack("Total").symbol(false).itemStyle().normal().lineStyle();
+        minimumLine.itemStyle(minimumStyle);
 
 
 
         Line maximumLine = new Line();
-        maximumLine.name("maximum").data(maximumTem).stack("Total").symbol(false).areaStyle();
+        Label maximumLable = new Label();
+        maximumLable.show(true).position("top");
+        ItemStyle maximumStyle = new ItemStyle();
+        maximumStyle.normal().label(maximumLable);
+        maximumLine.name("maximum").data(maximumTem).stack("Total").areaStyle();
+        maximumLine.itemStyle(maximumStyle);
 
         option.series(minimumLine,maximumLine);
 
