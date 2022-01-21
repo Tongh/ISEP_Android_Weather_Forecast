@@ -42,8 +42,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     EchartView lineChart;
 
-//    @BindView(R.id.day_recycler)
-//    RecyclerView recyclerViewDay;
+    RecyclerView recyclerViewDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +85,7 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerView.setAdapter(hourWeatherAdapter);
         }
 
-
+//        recyclerViewDay = findViewById(R.id.day_recycler);
 //        LinearLayoutManager managerDay = new LinearLayoutManager(this);
 //        managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
 //        recyclerViewDay.setLayoutManager(managerDay);
