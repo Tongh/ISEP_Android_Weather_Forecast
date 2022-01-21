@@ -9,7 +9,6 @@ import com.isep.group4.android_weather_forecast.beans.adapter.DayWeather;
 import com.isep.group4.android_weather_forecast.beans.adapter.HourWeather;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class sharedPreferenceUtil {
@@ -21,8 +20,6 @@ public class sharedPreferenceUtil {
     private static ArrayList<Double> dailyMinTemp;
     private static ArrayList<Double> dailyMaxTemp;
     private static Context context;
-    private static Context contextDaily;
-    private static Context contextDailyMinMax;
 
     static public void saveLatLon(Context context, Double latitude, Double longitude) {
         sharedPreferenceUtil.context = context;
@@ -57,15 +54,15 @@ public class sharedPreferenceUtil {
         sharedPreferenceUtil.hourWeathers = hourWeathers;
         Log.d("Forecast_Hour_Weather",hourWeathers.size()+"set");
     }
-
     public static ArrayList<HourWeather> getHourWeathers() {
         Log.d("Forecast_Hour_Weather",hourWeathers.size()+"get");
         return hourWeathers;
     }
 
+
     public static void setDailyWeathers(ArrayList<DayWeather> dayWeathers){
         @SuppressLint("CommitPrefEdits")
-        SharedPreferences.Editor editor = contextDaily.getSharedPreferences("DailyWeathers", Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences("DailyWeathers", Context.MODE_PRIVATE).edit();
         editor.putString("dailyweathers", dayWeathers.toString());
         sharedPreferenceUtil.dailyWeathers = dayWeathers;
     }
@@ -74,15 +71,14 @@ public class sharedPreferenceUtil {
         return dailyWeathers;
     }
 
-    public static void setDailyMinMaxTemps(ArrayList<Double> minimumTemp,ArrayList<Double> maximumTemp){
+    public static void setDailyMinMaxTemps(ArrayList<Double> minimumTemp,ArrayList<Double> maximumTemp) {
         @SuppressLint("CommitPrefEdits")
-                SharedPreferences.Editor editor = contextDailyMinMax.getSharedPreferences("DailyMinMaxTemps", Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences("DailyMinMaxTemps", Context.MODE_PRIVATE).edit();
         editor.putString("dailyMinTemp", minimumTemp.toString());
         editor.putString("dailyMaxTemp", maximumTemp.toString());
         sharedPreferenceUtil.dailyMinTemp = minimumTemp;
         sharedPreferenceUtil.dailyMaxTemp = maximumTemp;
     }
-
     public static ArrayList<Double> getDailyMinTemp() {
         return dailyMinTemp;
     }

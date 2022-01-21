@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -33,18 +32,18 @@ import com.isep.group4.android_weather_forecast.utils.tempUtil;
 
 public class WeatherActivity extends AppCompatActivity {
     public static AppCompatActivity activity;
-    EchartView lineChart;
 
     @BindViews({R.id.city_name, R.id.curr_temp, R.id.weather_status
-            , R.id.lowest_temp, R.id.highest_temp, R.id.tv_humidity
-            , R.id.tv_pressure, R.id.tv_visibility, R.id.tv_wind_direction})
+            , R.id.lowest_temp, R.id.highest_temp})
     List<TextView> textViews;
 
     @BindView(R.id.hour_recycler)
     RecyclerView recyclerView;
 
-    @BindView(R.id.day_recycler)
-    RecyclerView recyclerViewDay;
+    EchartView lineChart;
+
+//    @BindView(R.id.day_recycler)
+//    RecyclerView recyclerViewDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,18 +75,6 @@ public class WeatherActivity extends AppCompatActivity {
         textViews.get(4).setText(tempUtil.transfer(main.getTemp_max()));
         //设置高低温度
 
-        textViews.get(5).setText(currentWeather.getMain().getHumidity() + "%");
-        //设置湿度
-
-        textViews.get(6).setText(currentWeather.getMain().getPressure() + " hPa");
-        //设置气压
-
-        textViews.get(7).setText(currentWeather.getVisibility() / 1000 + " hPa");
-        //设置能见度
-
-        textViews.get(7).setText(currentWeather.getVisibility() / 1000 + " hPa");
-        //设置能见度
-
         /*
          * 设置一天的天气预报
          */
@@ -99,23 +86,20 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerView.setAdapter(hourWeatherAdapter);
         }
 
-        //一周天气预报echarts
-        LinearLayoutManager managerDay = new LinearLayoutManager(this);
-        managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerViewDay.setLayoutManager(managerDay);
-        if(sharedPreferenceUtil.getDailyWeathers().size() > 0){
-            DayWeatherAdapter dayWeatherAdapter = new DayWeatherAdapter(sharedPreferenceUtil.getDailyWeathers());
-            recyclerViewDay.setAdapter(dayWeatherAdapter);
-        }
+
+//        LinearLayoutManager managerDay = new LinearLayoutManager(this);
+//        managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        recyclerViewDay.setLayoutManager(managerDay);
+//        if(sharedPreferenceUtil.getDailyWeathers().size() > 0){
+//            DayWeatherAdapter dayWeatherAdapter = new DayWeatherAdapter(sharedPreferenceUtil.getDailyWeathers());
+//            recyclerViewDay.setAdapter(dayWeatherAdapter);
+//        }
 
 //        displayEchart();
 
+
         Intent intent = new Intent(this, UpdateService.class);
         startService(intent);
-
-
-
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -130,7 +114,6 @@ public class WeatherActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         setWeather();
     }
-
 
     public void displayEchart(){
         lineChart = findViewById(R.id.lineChart);
