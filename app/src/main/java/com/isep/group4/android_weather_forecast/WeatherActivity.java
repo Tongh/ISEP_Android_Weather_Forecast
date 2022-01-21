@@ -91,7 +91,7 @@ public class WeatherActivity extends AppCompatActivity {
         textViews.get(8).setText(windUtil.ToDirection(currentWeather.getWind().getDeg()) + " wind");
         //设置风向
 
-        textViews.get(9).setText(tempUtil.transfer(currentWeather.getMain().getFeels_like()) + " °C");
+        textViews.get(9).setText(tempUtil.transfer(currentWeather.getMain().getFeels_like()));
         //设置体感温度
 
         /*
