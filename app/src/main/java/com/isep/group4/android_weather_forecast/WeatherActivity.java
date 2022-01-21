@@ -36,7 +36,8 @@ public class WeatherActivity extends AppCompatActivity {
 
     @BindViews({R.id.city_name, R.id.curr_temp, R.id.weather_status
             , R.id.lowest_temp, R.id.highest_temp, R.id.tv_humidity
-            , R.id.tv_pressure, R.id.tv_visibility, R.id.tv_wind_direction})
+            , R.id.tv_pressure, R.id.tv_visibility, R.id.tv_wind_direction
+            , R.id.feelslike})
     List<TextView> textViews;
 
     @BindView(R.id.hour_recycler)
@@ -88,7 +89,10 @@ public class WeatherActivity extends AppCompatActivity {
         //设置能见度
 
         textViews.get(8).setText(windUtil.ToDirection(currentWeather.getWind().getDeg()) + " wind");
-        //设置能见度
+        //设置风向
+
+        textViews.get(9).setText(tempUtil.transfer(currentWeather.getMain().getFeels_like()) + " °C");
+        //设置体感温度
 
         /*
          * 设置一天的天气预报
