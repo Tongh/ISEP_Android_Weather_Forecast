@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.isep.group4.android_weather_forecast.adpaters.DayWeatherAdapter;
 import com.isep.group4.android_weather_forecast.adpaters.HourWeatherAdapter;
 import com.isep.group4.android_weather_forecast.beans.current_weather.CurrentWeather;
 import com.isep.group4.android_weather_forecast.beans.current_weather.Main;
@@ -40,8 +41,10 @@ public class WeatherActivity extends AppCompatActivity {
     @BindView(R.id.hour_recycler)
     RecyclerView recyclerView;
 
+    @BindView(R.id.lineChart)
     EchartView lineChart;
 
+    @BindView(R.id.day_recycler)
     RecyclerView recyclerViewDay;
 
     @Override
@@ -97,16 +100,16 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerView.setAdapter(hourWeatherAdapter);
         }
 
-//        recyclerViewDay = findViewById(R.id.day_recycler);
-//        LinearLayoutManager managerDay = new LinearLayoutManager(this);
-//        managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        recyclerViewDay.setLayoutManager(managerDay);
-//        if(sharedPreferenceUtil.getDailyWeathers().size() > 0){
-//            DayWeatherAdapter dayWeatherAdapter = new DayWeatherAdapter(sharedPreferenceUtil.getDailyWeathers());
-//            recyclerViewDay.setAdapter(dayWeatherAdapter);
-//        }
+        recyclerViewDay = findViewById(R.id.day_recycler);
+        LinearLayoutManager managerDay = new LinearLayoutManager(this);
+        managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewDay.setLayoutManager(managerDay);
+        if(sharedPreferenceUtil.getDailyWeathers().size() > 0){
+            DayWeatherAdapter dayWeatherAdapter = new DayWeatherAdapter(sharedPreferenceUtil.getDailyWeathers());
+            recyclerViewDay.setAdapter(dayWeatherAdapter);
+        }
 
-//        displayEchart();
+        displayEchart();
 
 
         Intent intent = new Intent(this, UpdateService.class);
@@ -127,7 +130,6 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     public void displayEchart(){
-        lineChart = findViewById(R.id.lineChart);
         lineChart.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {

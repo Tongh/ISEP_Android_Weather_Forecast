@@ -37,7 +37,7 @@ public class echartOption {
         minimumLabel.show(true).position("bottom");
         ItemStyle minimumStyle = new ItemStyle();
         minimumStyle.normal().label(minimumLabel);
-        minimumLine.name("minimum").data(minimumTem).stack("Total").symbol(false).itemStyle().normal().lineStyle();
+        minimumLine.name("minimum").data(minimumTem).stack("Total");
         minimumLine.itemStyle(minimumStyle);
 
 
