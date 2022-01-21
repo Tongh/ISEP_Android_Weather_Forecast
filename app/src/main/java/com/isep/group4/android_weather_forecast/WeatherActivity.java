@@ -21,6 +21,7 @@ import com.isep.group4.android_weather_forecast.echarts.echartOption;
 import com.isep.group4.android_weather_forecast.services.UpdateService;
 import com.isep.group4.android_weather_forecast.utils.sharedPreferenceUtil;
 import com.isep.group4.android_weather_forecast.utils.tempUtil;
+import com.isep.group4.android_weather_forecast.utils.windUtil;
 
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class WeatherActivity extends AppCompatActivity {
         textViews.get(7).setText(currentWeather.getVisibility() / 1000 + " hPa");
         //设置能见度
 
-        textViews.get(7).setText(currentWeather.getVisibility() / 1000 + " hPa");
+        textViews.get(8).setText(windUtil.ToDirection(currentWeather.getWind().getDeg()) + " wind");
         //设置能见度
 
         /*
