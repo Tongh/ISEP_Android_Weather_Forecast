@@ -28,4 +28,12 @@
         android:textSize="24sp"
         android:translationY="20dp" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:translationY="100dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"/>
+
 </FrameLayout>

@@ -35,6 +35,7 @@ import okhttp3.Response;
 
 public class HttpUtil {
     static int status = 0;
+
     public static void requestCityInfo(String cityname, AppCompatActivity activity) {
         HttpUtil.sendOkhttpRequest("https://maps.googleapis.com/maps/api/geocode/json?address=" + cityname + "&key=AIzaSyAYE39CrIN_0fcSmDERaroK_lXrE8VwWMk",
                 new Callback() {
@@ -85,9 +86,10 @@ public class HttpUtil {
                             activity.runOnUiThread(() -> {
                                 Log.d("Query_CurrentWeather", currentWeather.getName());
                                 sharedPreferenceUtil.saveCurrentWeather(activity, currentWeather);
-                                while (status==0){
-                                    Log.d("Forecast_Hour_Weather",status+"");
+                                while (status == 0) {
+                                    Log.d("Forecast_Hour_Weather", status + "");
                                 }
+                                status = 0;
                                 activity.startActivity(new Intent(activity, WeatherActivity.class));
                             });
                         } catch (Exception e) {
@@ -127,7 +129,7 @@ public class HttpUtil {
                 //将每天数据进行解析存入recyclerview中
                 List<Daily> dailies = forecast.getDaily();
                 ArrayList<DayWeather> listDayWeather = new ArrayList<>();
-                for(Daily daily : dailies) {
+                for (Daily daily : dailies) {
                     listDayWeather.add(new DayWeather(timeUtil.Transfer(daily.getDt()), daily.getWeather().get(0).getMain(),
                             tempUtil.transfer(daily.getTemp().getDay())));
                 }
@@ -137,11 +139,11 @@ public class HttpUtil {
                 //将echarts需要的数据存入sharedPreference里
                 ArrayList<Double> minimumTempList = new ArrayList<>();
                 ArrayList<Double> maximumTempList = new ArrayList<>();
-                for(Daily daily : dailies){
+                for (Daily daily : dailies) {
                     minimumTempList.add(daily.getTemp().getMin());
                     maximumTempList.add(daily.getTemp().getMax());
                 }
-                sharedPreferenceUtil.setDailyMinMaxTemps(minimumTempList,maximumTempList);
+                sharedPreferenceUtil.setDailyMinMaxTemps(minimumTempList, maximumTempList);
 
                 status = 1;
             }

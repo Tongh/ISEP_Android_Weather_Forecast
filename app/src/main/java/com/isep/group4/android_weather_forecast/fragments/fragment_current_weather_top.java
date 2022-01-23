@@ -1,5 +1,6 @@
 package com.isep.group4.android_weather_forecast.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.isep.group4.android_weather_forecast.R;
@@ -32,6 +34,7 @@ public class fragment_current_weather_top extends Fragment {
     private double lon;
 
     private TextView tv_weather, tv_temperature;
+    ProgressBar progressBar;
 
     public fragment_current_weather_top() {
         HttpUtil.requestCurrentWeather(48.8534, 2.3486, (AppCompatActivity) getActivity());
@@ -72,6 +75,12 @@ public class fragment_current_weather_top extends Fragment {
 
         tv_weather = view.findViewById(R.id.tv_weather);
         tv_temperature = view.findViewById(R.id.tv_temperature);
+        progressBar = view.findViewById(R.id.progress_bar);
+        ProgressDialog dialog = new ProgressDialog(view.getContext());
+        dialog.setTitle("This is ProgressDialog");
+        dialog.setMessage("Loading……");
+        dialog.setCancelable(false);
+        dialog.show();
 
         return view;
     }

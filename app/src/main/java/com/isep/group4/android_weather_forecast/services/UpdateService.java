@@ -6,11 +6,14 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.isep.group4.android_weather_forecast.WeatherActivity;
@@ -19,6 +22,14 @@ import com.isep.group4.android_weather_forecast.utils.HttpUtil;
 
 public class UpdateService extends Service {
     AppCompatActivity activity;
+    public static int Handle_Update = 1;
+    Handler handler = new Handler(message -> {
+        if (message.what == Handle_Update) {
+            updateWeather();
+        }
+        stopSelf();
+        return false;
+    });
 
     public UpdateService(){
 
@@ -43,6 +54,12 @@ public class UpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         activity = WeatherActivity.activity;
+        Log.d("onStartCommand", "Service: " + activity);
+        Message message = handler.obtainMessage();
+        message.what = Handle_Update;
+        handler.sendMessageDelayed(message, 60 * 1000);//60*1000 ms=60 s=1 min
+        /*
+        activity = WeatherActivity.activity;
         updateWeather();
         Log.d("onStartCommand","Service: "+activity);
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -51,6 +68,8 @@ public class UpdateService extends Service {
         PendingIntent pi = PendingIntent.getService(this, 0, intent1, 0);
         manager.cancel(pi);
         manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerTime, pi);
+
+         */
         return super.onStartCommand(intent, flags, startId);
     }
 

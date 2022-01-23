@@ -40,12 +40,15 @@ public class WeatherActivity extends AppCompatActivity {
             , R.id.feelslike})
     List<TextView> textViews;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.hour_recycler)
     RecyclerView recyclerView;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.lineChart)
     EchartView lineChart;
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.day_recycler)
     RecyclerView recyclerViewDay;
 
