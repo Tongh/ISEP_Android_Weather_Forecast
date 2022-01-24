@@ -1,9 +1,6 @@
 # ISEP_Android_Weather_Forecast
 ## Group 4
-Name	       Student ID	Github account
-SilongXu	    10754	      LONGSIGn
-Wenxiao WANG	9138	      Tongh
-Meng JIANG	    61550	     MengJIANG97
+![image](https://user-images.githubusercontent.com/75248451/150762282-bc825af9-6d70-49db-93f1-fa297a4875c6.png)
 
 ---
 
