@@ -8,4 +8,8 @@ public class tempUtil {
         double C = temp - 273.15;
         return df.format(C) + "℃";
     }
+    public static Double transferDouble(double temp){
+        double C = temp - 273.15;
+        return (double) (Math.round(C * 100) / 100);
+    }
 }

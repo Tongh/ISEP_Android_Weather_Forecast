@@ -134,14 +134,13 @@ public class HttpUtil {
                             tempUtil.transfer(daily.getTemp().getDay())));
                 }
                 sharedPreferenceUtil.setDailyWeathers(listDayWeather);
-                Log.d("dailyWeatherrrrrrr", "fuckyou");
 
                 //将echarts需要的数据存入sharedPreference里
                 ArrayList<Double> minimumTempList = new ArrayList<>();
                 ArrayList<Double> maximumTempList = new ArrayList<>();
                 for (Daily daily : dailies) {
-                    minimumTempList.add(daily.getTemp().getMin());
-                    maximumTempList.add(daily.getTemp().getMax());
+                    minimumTempList.add(tempUtil.transferDouble(daily.getTemp().getMin()));
+                    maximumTempList.add(tempUtil.transferDouble(daily.getTemp().getMax()));
                 }
                 sharedPreferenceUtil.setDailyMinMaxTemps(minimumTempList, maximumTempList);
 

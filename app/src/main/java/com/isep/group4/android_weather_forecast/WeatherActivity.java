@@ -108,7 +108,6 @@ public class WeatherActivity extends AppCompatActivity {
             recyclerView.setAdapter(hourWeatherAdapter);
         }
 
-        recyclerViewDay = findViewById(R.id.day_recycler);
         LinearLayoutManager managerDay = new LinearLayoutManager(this);
         managerDay.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewDay.setLayoutManager(managerDay);
@@ -152,8 +151,6 @@ public class WeatherActivity extends AppCompatActivity {
 
     //配置object[] x 以及 object[] y
     private void refreshLineChart(Object[] minimumTemp,Object[] maximumTemp){
-//        Object[] x = new Object[]{220, 182, 191, 234, 290, 330, 310};
-//        Object[] y = new Object[]{820, 932, 901, 934, 1290, 1330, 1320};
         lineChart.refreshEchartsWithOption(echartOption.getLineChartOptions(minimumTemp, maximumTemp));
     }
 }
