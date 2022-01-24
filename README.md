@@ -1,7 +1,7 @@
 # ISEP_Android_Weather_Forecast
 ## Group 4
 WANG Wenxiao<br>
-JIANG Meng<br> 61550 MengJIANG97
+Memeber Name:JIANG Meng Student Number: 61550 Github Username: MengJIANG97<br> 
 XU Silong<br>
 
 ---
